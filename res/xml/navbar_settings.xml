@@ -31,7 +31,7 @@
                     android:fragment="com.android.settings.slim.dslv.ButtonsListViewSettings"
                     android:title="@string/navbar_button_title">
                 <extra android:name="buttonMode" android:value="0" />
-                <extra android:name="maxAllowedButtons" android:value="5" />
+                <extra android:name="maxAllowedButtons" android:value="10" />
                 <extra android:name="disableDeleteLastEntry" android:value="true" />
                 <extra android:name="fragment" android:value="com.android.settings.slim.fragments.NavbarButtonFragment" />
             </PreferenceScreen>
