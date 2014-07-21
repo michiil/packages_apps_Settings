@@ -187,9 +187,11 @@ public class TimeRangePreference extends Preference implements
                 if (key == DIALOG_START_TIME) {
                     mStartTime = time;
                     mStartTimeText.setText(returnTime(time));
+                    mEndTimeText.setText(returnTime(mEndTime));
                 } else {
                     mEndTime = time;
                     mEndTimeText.setText(returnTime(time));
+                    mStartTimeText.setText(returnTime(mStartTime));
                 }
                 callChangeListener(this);
             };
@@ -202,6 +204,10 @@ public class TimeRangePreference extends Preference implements
             return "";
         }
 
+        // Preference is doing nothing, make it obvious
+        if (mEndTime == mStartTime) {
+            return "- - : - -";
+        }
         int hr = t;
         int mn = t;
 
