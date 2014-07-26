@@ -27,6 +27,12 @@
         android:key="advanced_settings_options_prefs"
         android:title="@string/advanced_options_settings_title">
 
+        <com.android.settings.WrappingSwitchPreference
+            android:key="adb_over_network_on_boot"
+            android:title="@string/adb_over_network_on_boot_title"
+            android:summary="@string/adb_over_network_on_boot_summary"
+            android:persistent="true"/>
+
         <ListPreference
             android:key="media_scanner_on_boot"
             android:title="@string/media_scanner_on_boot_title"

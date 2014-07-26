@@ -25,6 +25,7 @@ import android.preference.ListPreference;
 import android.preference.Preference;
 import android.preference.PreferenceScreen;
 import android.preference.Preference.OnPreferenceChangeListener;
+import android.preference.SwitchPreference;
 
 import com.android.settings.R;
 import com.android.settings.SettingsPreferenceFragment;
@@ -36,6 +37,11 @@ public class AdvancedSettings extends SettingsPreferenceFragment
 
     private static final String PREF_MEDIA_SCANNER_ON_BOOT = "media_scanner_on_boot";
     private static final String PREF_DEVICESETTINGS_APP = "devicesettings_app";
+
+    private static final String BOOT_WITH_ADB_OVER_NETWORK_PREF = "adb_over_network_on_boot";   // from res/values/slim_strings.xml
+    private SwitchPreference mBootWithAdbNetworkPref;
+    private static final String BOOT_WITH_ADB_OVER_NETWORK_PROP = "persist.sys.boot_adb_network";
+    private static final String BOOT_WITH_ADB_OVER_NETWORK_DEFAULT = "0";
 
     private PreferenceScreen mDeviceSettingsApp;
     private ListPreference mMsob;
@@ -54,10 +60,19 @@ public class AdvancedSettings extends SettingsPreferenceFragment
 
         mDeviceSettingsApp = (PreferenceScreen) findPreference(PREF_DEVICESETTINGS_APP);
 
+        mBootWithAdbNetworkPref = (SwitchPreference) prefSet.findPreference(BOOT_WITH_ADB_OVER_NETWORK_PREF);
+        mBootWithAdbNetworkPref.setOnPreferenceChangeListener(this);
+
         if (!deviceSettingsAppExists()) {
             getPreferenceScreen().removePreference(mDeviceSettingsApp);
         }
 
+        if (getPreferenceManager() != null) {
+            String useBootWithAdbNetwork = SystemProperties.get(BOOT_WITH_ADB_OVER_NETWORK_PROP,
+	                                                            BOOT_WITH_ADB_OVER_NETWORK_DEFAULT);
+            Log.i(TAG, "onCreate useBootWithAdbNetwork="+useBootWithAdbNetwork);
+            mBootWithAdbNetworkPref.setChecked("1".equals(useBootWithAdbNetwork));
+        }
     }
 
     private boolean deviceSettingsAppExists() {
@@ -86,6 +101,13 @@ public class AdvancedSettings extends SettingsPreferenceFragment
             return true;
         }
         return false;
+
+        if (preference.getKey().equals(BOOT_WITH_ADB_OVER_NETWORK_PREF)) {
+            Log.i(TAG, "onPreferenceChange mBootWithAdbNetworkPref checked="+newValue);
+			SystemProperties.set(BOOT_WITH_ADB_OVER_NETWORK_PROP, (Boolean)newValue ? "1" : "0");
+            return true;
+        }
+
     }
 
 }
