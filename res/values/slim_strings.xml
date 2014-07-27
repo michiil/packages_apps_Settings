@@ -1274,7 +1274,4 @@ two in order to insert additional control points. \'Remove\' deletes the selecte
     <string name="wakelock_blocker_warning_title">Proceed with Caution</string>
     <string name="wakelock_blocker_warning">Blocking wakelocks have the potential to cause instability, crashes or data loss.</string> 
 
-    <string name="adb_over_network_on_boot_title">Boot with ADB over network</string>
-    <string name="adb_over_network_on_boot_summary">Enable TCP/IP over network interfaces (Wi-Fi, USB networks) on every restart.</string>
-
 </resources>

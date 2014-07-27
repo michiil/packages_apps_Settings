@@ -44,16 +44,4 @@ public class BootReceiver extends BroadcastReceiver {
 
         QuietHoursController.getInstance(context).scheduleService();
     }
-
-    private void usbRomSettings(Context ctx) {
-		final String BOOT_WITH_ADB_OVER_NETWORK_PROP = "persist.sys.boot_adb_network";
-		final String BOOT_WITH_ADB_OVER_NETWORK_DEFAULT = "0";
-        String useBootWithAdbNetwork = SystemProperties.get(BOOT_WITH_ADB_OVER_NETWORK_PROP,
- 	                                                        BOOT_WITH_ADB_OVER_NETWORK_DEFAULT);
-		Log.i(TAG, "usbRomSettings useBootWithAdbNetwork="+useBootWithAdbNetwork);
-		if("1".equals(useBootWithAdbNetwork)) {
-		    Settings.Secure.putInt(ctx.getContentResolver(),
-		            Settings.Secure.ADB_PORT, 5555);
-		}
-   }
 }
