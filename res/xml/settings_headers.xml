@@ -61,6 +61,14 @@
     <!-- Additional SlimKat controls -->
     <header android:title="@string/header_category_rom_settings" />
 
+    <!-- PowerEventMgr -->
+    <header
+         android:id="@+id/powereventmgr"
+         android:icon="@drawable/ic_powereventmgr"
+         android:title="@string/title_powereventmgr">
+         <intent android:targetPackage="org.kangaroo.pem" android:action="android.intent.action.MAIN" android:targetClass="org.kangaroo.pem.activity.PreferencesActivity_" />
+    </header>
+
     <!-- Interface -->
     <header
         android:id="@+id/interface_settings"

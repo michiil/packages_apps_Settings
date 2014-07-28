@@ -1274,4 +1274,6 @@ two in order to insert additional control points. \'Remove\' deletes the selecte
     <string name="wakelock_blocker_warning_title">Proceed with Caution</string>
     <string name="wakelock_blocker_warning">Blocking wakelocks have the potential to cause instability, crashes or data loss.</string> 
 
+    <string name="title_powereventmgr">USB - Power Event Manager</string>
+
 </resources>
